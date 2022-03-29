@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud</groupId>
-    <artifactId>platform-web</artifactId>
+    <groupId>com.cloud.platform</groupId>
+    <artifactId>cloud-web-spring-boot-starter</artifactId>
     <version>1.4.2-RELEASES</version>
 
     <name>platform-web</name>
@@ -12,14 +12,14 @@
 
     <!--Parent 配置-->
     <parent>
-        <groupId>com.cloud</groupId>
+        <groupId>com.cloud.platform</groupId>
         <artifactId>platform-parent</artifactId>
         <version>1.1.2-RELEASES</version>
     </parent>
 
     <dependencies>
         <dependency>
-            <groupId>com.cloud</groupId>
+            <groupId>com.cloud.platform</groupId>
             <artifactId>platform-common</artifactId>
         </dependency>
         <dependency>
