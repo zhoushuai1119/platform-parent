@@ -37,7 +37,6 @@
         <seata-version>1.4.2</seata-version>
         <alibaba-druid.version>1.1.23</alibaba-druid.version>
         <redisson.version>3.14.0</redisson.version>
-        <hibernate-validator.version>7.0.2.Final</hibernate-validator.version>
         <guava.version>23.0</guava.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-pool2.version>2.11.1</commons-pool2.version>
@@ -45,6 +44,7 @@
         <commons-collections.version>3.2.2</commons-collections.version>
         <fastdfs-client.version>1.27.2</fastdfs-client.version>
         <jackson.version>2.12.6</jackson.version>
+        <validation.api.version>2.0.0.Final</validation.api.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <platform.common.version>1.4.2-RELEASES</platform.common.version>
@@ -105,9 +105,9 @@
                 <version>${commons-lang3.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate-validator.version}</version>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation.api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
