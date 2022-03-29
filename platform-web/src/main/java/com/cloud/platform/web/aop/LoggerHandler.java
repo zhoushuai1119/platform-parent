@@ -10,7 +10,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
 
 /**
  * @Description:
@@ -18,9 +17,8 @@ import org.springframework.stereotype.Component;
  * @Date: 2021-06-27 17:01
  */
 @Aspect
-@Component
 @Slf4j
-public class LoggerHandlerAop {
+public class LoggerHandler {
 
     @Pointcut("@annotation(com.cloud.platform.web.aop.annotation.MethodLogger)")
     public void loggerHandler(){}

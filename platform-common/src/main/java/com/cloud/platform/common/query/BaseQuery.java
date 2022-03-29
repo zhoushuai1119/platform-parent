@@ -1,5 +1,6 @@
 package com.cloud.platform.common.query;
 
+
 import com.cloud.platform.common.request.BaseRequest;
 
 /**

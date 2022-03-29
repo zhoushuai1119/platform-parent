@@ -245,13 +245,6 @@
 
     <build>
         <finalName>platform-parent</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </plugin>
-        </plugins>
     </build>
 
     <!--maven deploy-->

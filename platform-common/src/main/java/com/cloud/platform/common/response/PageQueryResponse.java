@@ -1,8 +1,6 @@
 package com.cloud.platform.common.response;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.platform.common.exception.BaseExceptionCode;
-
 import java.util.List;
 
 /**
@@ -11,7 +9,9 @@ import java.util.List;
  * @Date: 2021-06-27 16:26
  */
 public class PageQueryResponse<T> extends BaseResponse<List<T>> {
+
     private static final long serialVersionUID = -8937008601803151631L;
+
     private long pageIndex;
     private long totalCount;
     private long pageSize;
@@ -28,24 +28,12 @@ public class PageQueryResponse<T> extends BaseResponse<List<T>> {
         return this;
     }
 
-    public PageQueryResponse<T> successPage(Page<T> page) {
-        this.setSuccess(true);
-        this.setModel(page.getRecords());
-        this.setPageIndex(page.getCurrent());
-        this.setTotalCount(page.getTotal());
-        this.setPageSize(page.getSize());
-        return this;
-    }
 
     public static <T> PageQueryResponse<T> createSuccessResult(List<T> model) {
         PageQueryResponse<T> rt = new PageQueryResponse();
         return (PageQueryResponse)rt.success(model);
     }
 
-    public static <T> PageQueryResponse<T> createSuccessPageResult(Page<T> page) {
-        PageQueryResponse<T> rt = new PageQueryResponse();
-        return rt.successPage(page);
-    }
 
     public static <T> PageQueryResponse<T> createSuccessResult(List<T> model, long pageIndex, long totalCount, long pageSize) {
         PageQueryResponse<T> rt = new PageQueryResponse();
@@ -108,7 +96,8 @@ public class PageQueryResponse<T> extends BaseResponse<List<T>> {
     }
 
     private long getSize() {
-        List<T> page = (List)this.getModel();
+        List<T> page = this.getModel();
         return page == null ? 0 : page.size();
     }
+
 }
