@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(
-        prefix = "cloud.web"
+    prefix = "cloud.web"
 )
 public class CloudWebProperties {
 

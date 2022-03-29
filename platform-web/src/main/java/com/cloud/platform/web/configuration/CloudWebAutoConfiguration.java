@@ -3,6 +3,7 @@ package com.cloud.platform.web.configuration;
 import com.cloud.platform.common.response.BaseResponse;
 import com.cloud.platform.common.utils.JsonUtil;
 import com.cloud.platform.web.aop.LoggerHandler;
+import com.cloud.platform.web.aop.NewAuthHandler;
 import com.cloud.platform.web.filter.LogWithUUIDFilter;
 import com.cloud.platform.web.properties.CloudWebProperties;
 import com.cloud.platform.web.utils.ExceptionUtils;
@@ -31,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
  * @version: v1
  */
 @Configuration
-@EnableConfigurationProperties({ ConfigurationProperties.class })
+@EnableConfigurationProperties({ CloudWebProperties.class })
 @Import({ SwaggerConfiguration.class })
 @Slf4j
 public class CloudWebAutoConfiguration {
@@ -49,6 +50,17 @@ public class CloudWebAutoConfiguration {
     )
     public LoggerHandler getLoggerHandler() {
         return new LoggerHandler();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(
+            prefix = "cloud.web",
+            name = {"enableNewAuth"},
+            matchIfMissing = true
+    )
+    public NewAuthHandler getNewAuthHandler() {
+        return new NewAuthHandler();
     }
 
     @Bean

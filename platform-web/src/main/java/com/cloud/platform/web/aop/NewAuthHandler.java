@@ -26,8 +26,7 @@ import java.util.Objects;
  **/
 @Aspect
 @Slf4j
-@Component
-public class NewAuthV2Handler implements ApplicationContextAware {
+public class NewAuthHandler implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
