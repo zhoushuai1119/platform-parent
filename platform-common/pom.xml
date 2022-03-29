@@ -65,7 +65,7 @@
     </dependencies>
 
     <build>
-        <finalName>platform-parent</finalName>
+        <finalName>platform-common</finalName>
     </build>
 
 </project>
