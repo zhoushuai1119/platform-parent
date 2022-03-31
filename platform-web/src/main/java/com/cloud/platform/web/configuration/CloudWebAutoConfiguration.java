@@ -1,7 +1,7 @@
 package com.cloud.platform.web.configuration;
 
 import com.cloud.platform.common.response.BaseResponse;
-import com.cloud.platform.web.utils.JsonUtil;
+import com.cloud.platform.common.utils.JsonUtil;
 import com.cloud.platform.web.aop.LoggerHandler;
 import com.cloud.platform.web.aop.NewAuthHandler;
 import com.cloud.platform.web.filter.LogWithUUIDFilter;

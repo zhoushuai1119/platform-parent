@@ -1,4 +1,4 @@
-package com.cloud.platform.web.utils;
+package com.cloud.platform.common.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
