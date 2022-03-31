@@ -1,4 +1,4 @@
-package com.cloud.platform.common.utils;
+package com.cloud.platform.web.utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

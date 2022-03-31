@@ -1,4 +1,4 @@
-package com.cloud.platform.common.utils;
+package com.cloud.platform.web.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;

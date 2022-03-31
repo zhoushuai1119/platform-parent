@@ -1,4 +1,4 @@
-package com.cloud.platform.common.utils;
+package com.cloud.platform.web.utils;
 
 import org.apache.commons.collections.CollectionUtils;
 

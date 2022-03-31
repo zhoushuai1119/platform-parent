@@ -1,6 +1,6 @@
 package com.cloud.platform.web.aop;
 
-import com.cloud.platform.common.utils.JsonUtil;
+import com.cloud.platform.web.utils.JsonUtil;
 import com.cloud.platform.web.aop.annotation.MethodLogger;
 import com.cloud.platform.web.enums.LogTypeEnum;
 import lombok.extern.slf4j.Slf4j;

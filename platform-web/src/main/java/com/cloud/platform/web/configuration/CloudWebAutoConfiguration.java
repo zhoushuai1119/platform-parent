@@ -1,7 +1,7 @@
 package com.cloud.platform.web.configuration;
 
 import com.cloud.platform.common.response.BaseResponse;
-import com.cloud.platform.common.utils.JsonUtil;
+import com.cloud.platform.web.utils.JsonUtil;
 import com.cloud.platform.web.aop.LoggerHandler;
 import com.cloud.platform.web.aop.NewAuthHandler;
 import com.cloud.platform.web.filter.LogWithUUIDFilter;
@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
