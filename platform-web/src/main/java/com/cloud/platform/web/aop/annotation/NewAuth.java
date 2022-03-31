@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.PARAMETER})
-public @interface NewAuthV2 {
+public @interface NewAuth {
 
     String agentNoProperty() default "agentNo";
 

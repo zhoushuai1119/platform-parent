@@ -1,7 +1,7 @@
 package com.cloud.platform.web.aop;
 
 import com.cloud.platform.common.request.PageQueryRequest;
-import com.cloud.platform.web.aop.annotation.NewAuthV2;
+import com.cloud.platform.web.aop.annotation.NewAuth;
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,6 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
@@ -35,14 +34,14 @@ public class NewAuthHandler implements ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
-    @Pointcut("@annotation(com.cloud.platform.web.aop.annotation.NewAuthV2)")
+    @Pointcut("@annotation(com.cloud.platform.web.aop.annotation.NewAuth)")
     public void additional() {
 
     }
 
     @Around("additional()")
     public Object before(ProceedingJoinPoint joinPoint) throws Throwable {
-        NewAuthV2 newAuth = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(NewAuthV2.class);
+        NewAuth newAuth = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(NewAuth.class);
         Object[] args = joinPoint.getArgs();
         List<Object> objects = Lists.newArrayList();
         for (Object arg : args) {
