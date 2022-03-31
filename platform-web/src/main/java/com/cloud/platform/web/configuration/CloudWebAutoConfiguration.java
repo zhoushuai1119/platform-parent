@@ -74,11 +74,6 @@ public class CloudWebAutoConfiguration {
         return jsonConverter;
     }
 
-    @Bean
-    public MethodValidationPostProcessor methodValidationPostProcessor() {
-        return new MethodValidationPostProcessor();
-    }
-
 
     @Bean
     public FilterRegistrationBean logWithUUIDFilter(CloudWebProperties cloudWebProperties) {
