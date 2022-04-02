@@ -7,8 +7,11 @@ import com.cloud.platform.web.aop.NewAuthHandler;
 import com.cloud.platform.web.filter.LogWithUUIDFilter;
 import com.cloud.platform.web.properties.CloudWebProperties;
 import com.cloud.platform.web.utils.ExceptionUtils;
+import com.github.dozermapper.spring.DozerBeanMapperFactoryBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,6 +19,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.Resource;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,6 +27,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * @description:
@@ -72,6 +77,21 @@ public class CloudWebAutoConfiguration {
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         jsonConverter.setObjectMapper(JsonUtil.OBJECT_MAPPER);
         return jsonConverter;
+    }
+
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnClass
+    @ConditionalOnProperty(
+            prefix = "enmonster.web",
+            name = {"enableDozer"},
+            matchIfMissing = true
+    )
+    public DozerBeanMapperFactoryBean dozerBeanMapperFactoryBean(@Value("classpath*:dozen/*mapper.xml") Resource[] resources) throws IOException {
+        DozerBeanMapperFactoryBean dozerBeanMapperFactoryBean = new DozerBeanMapperFactoryBean();
+        dozerBeanMapperFactoryBean.setMappingFiles(resources);
+        return dozerBeanMapperFactoryBean;
     }
 
 
