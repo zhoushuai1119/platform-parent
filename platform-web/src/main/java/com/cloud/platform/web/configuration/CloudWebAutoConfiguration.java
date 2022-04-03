@@ -1,5 +1,8 @@
 package com.cloud.platform.web.configuration;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.cloud.platform.common.response.BaseResponse;
 import com.cloud.platform.common.utils.JsonUtil;
 import com.cloud.platform.web.aop.LoggerHandler;
@@ -14,12 +17,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +33,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description:
@@ -64,6 +72,21 @@ public class CloudWebAutoConfiguration {
     )
     public NewAuthHandler getNewAuthHandler() {
         return new NewAuthHandler();
+    }
+
+    @Bean
+    @ConditionalOnProperty(
+            prefix = "cloud.web",
+            name = {"enableHttpMessageConverters"},
+            matchIfMissing = true
+    )
+    public HttpMessageConverters fastJsonHttpMessageConverters() {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        //第二个是用来指定当属性值为null是是否输出
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteMapNullValue);
+        fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
+        return new HttpMessageConverters(fastJsonHttpMessageConverter);
     }
 
     @Bean
