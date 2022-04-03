@@ -1,6 +1,6 @@
 package com.cloud.platform.web.netty.protocol;
 
-import com.cloud.platform.common.constants.CommonConstant;
+import com.cloud.platform.common.constants.PlatformCommonConstant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -25,7 +25,7 @@ public class SmartProtocol {
     /**
      * 消息的开头的信息标志
      */
-    private int head_data = CommonConstant.Netty.HEAD_DATA;
+    private int head_data = PlatformCommonConstant.Netty.HEAD_DATA;
     /**
      * 消息的长度
      */

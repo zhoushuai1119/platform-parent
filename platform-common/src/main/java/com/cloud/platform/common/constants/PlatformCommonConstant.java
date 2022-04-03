@@ -7,7 +7,7 @@ package com.cloud.platform.common.constants;
  * @Description：
  * @Version: 01
  */
-public class CommonConstant {
+public class PlatformCommonConstant {
 
     /**
      * 符号
