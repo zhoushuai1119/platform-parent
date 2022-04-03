@@ -99,11 +99,6 @@
             </dependency>
             <dependency>
                 <groupId>com.github.dozermapper</groupId>
-                <artifactId>dozer-core</artifactId>
-                <version>${dozer-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.dozermapper</groupId>
                 <artifactId>dozer-spring-boot-starter</artifactId>
                 <version>${dozer-core.version}</version>
             </dependency>
