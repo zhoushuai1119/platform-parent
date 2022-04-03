@@ -5,23 +5,30 @@
           http://dozermapper.github.io/schema/bean-mapping.xsd">
 
     <configuration>
+        <date-format>yyyy-MM-dd HH:mm:ss</date-format>
+
         <custom-converters> <!-- these are always bi-directional -->
-            <converter type="com.cloud.platform.common.utils.dozeConverter.LocalDateTimeToLocalDateTimeDozerConverter" >
+            <converter type="com.cloud.platform.web.dozeConverter.LocalDateTimeToLocalDateTimeDozerConverter" >
                 <class-a>java.time.LocalDateTime</class-a>
                 <class-b>java.time.LocalDateTime</class-b>
             </converter>
 
-            <converter type="com.cloud.platform.common.utils.dozeConverter.LocalDateToLocalDateDozerConverter" >
+            <converter type="com.cloud.platform.web.dozeConverter.DateToLocalDateDozerConverter" >
+                <class-a>java.util.Date</class-a>
+                <class-b>java.time.LocalDateTime</class-b>
+            </converter>
+
+            <converter type="com.cloud.platform.web.dozeConverter.LocalDateToLocalDateDozerConverter" >
                 <class-a>java.time.LocalDate</class-a>
                 <class-b>java.time.LocalDate</class-b>
             </converter>
 
-            <converter type="com.cloud.platform.common.utils.dozeConverter.StringToLocalDateDozerConverter" >
+            <converter type="com.cloud.platform.web.dozeConverter.StringToLocalDateDozerConverter" >
                 <class-a>java.lang.String</class-a>
                 <class-b>java.time.LocalDateTime</class-b>
             </converter>
-
         </custom-converters>
+
     </configuration>
 
 </mappings>

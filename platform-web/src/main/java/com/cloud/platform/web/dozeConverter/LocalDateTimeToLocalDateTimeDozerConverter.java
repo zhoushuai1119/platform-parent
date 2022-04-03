@@ -1,4 +1,4 @@
-package com.cloud.platform.common.utils.dozeConverter;
+package com.cloud.platform.web.dozeConverter;
 
 import com.github.dozermapper.core.DozerConverter;
 
