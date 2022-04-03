@@ -8,25 +8,22 @@
         <date-format>yyyy-MM-dd HH:mm:ss</date-format>
 
         <custom-converters> <!-- these are always bi-directional -->
-            <converter type="com.cloud.platform.web.dozeConverter.LocalDateTimeToLocalDateTimeDozerConverter" >
-                <class-a>java.time.LocalDateTime</class-a>
-                <class-b>java.time.LocalDateTime</class-b>
-            </converter>
 
-            <converter type="com.cloud.platform.web.dozeConverter.DateToLocalDateDozerConverter" >
+            <converter type="com.cloud.platform.web.dozeConverter.DateToLocalDateTimeConverter" >
                 <class-a>java.util.Date</class-a>
                 <class-b>java.time.LocalDateTime</class-b>
             </converter>
 
-            <converter type="com.cloud.platform.web.dozeConverter.LocalDateToLocalDateDozerConverter" >
-                <class-a>java.time.LocalDate</class-a>
-                <class-b>java.time.LocalDate</class-b>
-            </converter>
-
-            <converter type="com.cloud.platform.web.dozeConverter.StringToLocalDateDozerConverter" >
+            <converter type="com.cloud.platform.web.dozeConverter.StringToLocalDateTimeConverter" >
                 <class-a>java.lang.String</class-a>
                 <class-b>java.time.LocalDateTime</class-b>
             </converter>
+
+            <converter type="com.cloud.platform.web.dozeConverter.StringToLocalDateConverter" >
+                <class-a>java.lang.String</class-a>
+                <class-b>java.time.LocalDate</class-b>
+            </converter>
+
         </custom-converters>
 
     </configuration>

@@ -13,9 +13,9 @@ import java.util.Date;
  * @date: 2022/4/2 18:42
  * @version: v1
  */
-public class DateToLocalDateDozerConverter extends DozerConverter<Date, LocalDateTime>  {
+public class DateToLocalDateTimeConverter extends DozerConverter<Date, LocalDateTime>  {
 
-    public DateToLocalDateDozerConverter() {
+    public DateToLocalDateTimeConverter() {
         super(Date.class, LocalDateTime.class);
     }
 
