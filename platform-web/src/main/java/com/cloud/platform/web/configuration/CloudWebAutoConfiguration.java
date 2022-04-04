@@ -74,20 +74,6 @@ public class CloudWebAutoConfiguration {
         return new NewAuthHandler();
     }
 
-    @Bean
-    @ConditionalOnProperty(
-            prefix = "cloud.web",
-            name = {"enableHttpMessageConverters"},
-            matchIfMissing = true
-    )
-    public HttpMessageConverters fastJsonHttpMessageConverters() {
-        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        //第二个是用来指定当属性值为null是是否输出
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteMapNullValue);
-        fastJsonHttpMessageConverter.setFastJsonConfig(fastJsonConfig);
-        return new HttpMessageConverters(fastJsonHttpMessageConverter);
-    }
 
     @Bean
     @ConditionalOnProperty(
