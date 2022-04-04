@@ -22,6 +22,10 @@ public class PlatformCommonConstant {
          */
         String HYPHEN = "-";
         /**
+         * 等号
+         */
+        String EQUAL = "=";
+        /**
          * 波浪号
          */
         String WAVE = "~";
