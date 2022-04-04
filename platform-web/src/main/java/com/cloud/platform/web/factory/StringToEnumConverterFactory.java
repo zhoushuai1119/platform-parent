@@ -1,9 +1,11 @@
 package com.cloud.platform.web.factory;
 
-import com.cloud.platform.web.enums.BaseEnum;
+import com.cloud.platform.web.enums.ConverterBaseEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
+
+import java.util.Objects;
 
 /**
  * @description:
@@ -11,24 +13,23 @@ import org.springframework.core.convert.converter.ConverterFactory;
  * @date: 2021/1/25 18:59
  * @version: V1.0
  */
-public class StringToEnumConverterFactory implements ConverterFactory<String, BaseEnum> {
+public class StringToEnumConverterFactory implements ConverterFactory<String, ConverterBaseEnum> {
 
     @Override
-    public <T extends BaseEnum> Converter<String, T> getConverter(Class<T> aClass) {
-        return new StringToEnum(aClass);
+    public <T extends ConverterBaseEnum> Converter<String, T> getConverter(Class<T> targetType) {
+        return source ->  {
+            if (targetType == null || source == null) {
+                return null;
+            }
+            T[] enumConstants = targetType.getEnumConstants();
+            for (T enumConstant : enumConstants) {
+                String enumValue = String.valueOf(enumConstant.getValue());
+                if (Objects.equals(enumValue,source)) {
+                    return enumConstant;
+                }
+            }
+            return null;
+        };
     }
 
-    private class StringToEnum<T extends Enum<T> & BaseEnum> implements Converter<String, T> {
-
-        private final Class<T> enumType;
-
-        StringToEnum(Class<T> enumType) {
-            this.enumType = enumType;
-        }
-
-        @Override
-        public T convert(String source) {
-            return StringUtils.isBlank(source) ? null : BaseEnum.valueOf(this.enumType, source);
-        }
-    }
 }
