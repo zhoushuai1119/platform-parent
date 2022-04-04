@@ -20,17 +20,23 @@ public class StringToEnumConverterFactory implements ConverterFactory<String, Co
     @Override
     public <T extends ConverterBaseEnum> Converter<String, T> getConverter(Class<T> targetType) {
         return source ->  {
-            if (targetType == null || source == null) {
-                return null;
-            }
-            T[] enumConstants = targetType.getEnumConstants();
-            for (T enumConstant : enumConstants) {
-                String enumValue = String.valueOf(enumConstant.getValue());
-                if (Objects.equals(enumValue,source)) {
-                    return enumConstant;
+            T obj = null;
+            if (StringUtils.isNotBlank(source) && targetType != null) {
+                T[] enumConstants = targetType.getEnumConstants();
+                for (T enumConstant : enumConstants) {
+                    String enumValue = String.valueOf(enumConstant.getValue());
+                    if (Objects.equals(enumValue, source)) {
+                        obj = enumConstant;
+                        break;
+                    }
                 }
             }
-            return null;
+            if (obj == null) {
+                // 抛出该异常后，会调用 spring 的默认转换方案，即使用 枚举字面量进行映射
+                // org.springframework.core.convert.support.StringToEnumConverterFactory
+                throw new IllegalArgumentException("No element matches " + source);
+            }
+            return obj;
         };
     }
 
