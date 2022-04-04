@@ -8,7 +8,9 @@ import org.springframework.core.convert.converter.ConverterFactory;
 import java.util.Objects;
 
 /**
- * @description:
+ * @description: 自定义转换器，value 转换为 Enum
+ * 需要注意的是，在Spring MVC和Spring Boot中，
+ * 由于从客户端接收到的请求都被视为String类型，所以只能用String转枚举的converter。
  * @author: 周帅
  * @date: 2021/1/25 18:59
  * @version: V1.0
