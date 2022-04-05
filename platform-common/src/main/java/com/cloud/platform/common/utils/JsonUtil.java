@@ -105,14 +105,29 @@ public class JsonUtil {
     }
 
     static {
-        MY_DATE_TIME = (new DateTimeFormatterBuilder()).appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral(' ').appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':').appendValue(ChronoField.MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':').appendValue(ChronoField.SECOND_OF_MINUTE, 2).toFormatter();
-        MY_DATE = (new DateTimeFormatterBuilder()).appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-').appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2).toFormatter();
+        MY_DATE_TIME = (new DateTimeFormatterBuilder())
+                .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-')
+                .appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-')
+                .appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral(' ')
+                .appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':')
+                .appendValue(ChronoField.MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':')
+                .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
+                .toFormatter();
+        MY_DATE = (new DateTimeFormatterBuilder())
+                .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-')
+                .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+                .appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2)
+                .toFormatter();
         //反序列化的时候如果多了其他属性,不抛出异常
         OBJECT_MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         JavaTimeModule javaTimeModule = new JavaTimeModule();
+        //将前端传入的字符串转为 LocalDateTime
         javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(MY_DATE_TIME));
+        //将后端 LocalDateTime 转换为 MY_DATE_TIME 格式返回前端
         javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(MY_DATE_TIME));
+        //将前端传入的字符串转为 LocalDate
         javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(MY_DATE));
+        //将后端 LocalDate 转换为 MY_DATE 格式返回前端
         javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(MY_DATE));
         //会将mybatisplus 分页返回的total也转成字符串导致flutter问题
         //javaTimeModule.addSerializer(Long.class, ToStringSerializer.instance);
@@ -123,6 +138,7 @@ public class JsonUtil {
         OBJECT_MAPPER.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         //空值不序列化
         OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        //设置Date日期格式,不影响LocalDateTime和LocalDate
         OBJECT_MAPPER.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
     }
 
