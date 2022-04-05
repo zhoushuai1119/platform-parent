@@ -5,7 +5,7 @@ import com.cloud.platform.common.utils.JsonUtil;
 import com.cloud.platform.web.aop.LoggerHandler;
 import com.cloud.platform.web.filter.LogWithUUIDFilter;
 import com.cloud.platform.web.properties.CloudWebProperties;
-import com.cloud.platform.web.utils.ExceptionUtils;
+import com.cloud.platform.web.utils.GlobalExceptionUtils;
 import com.github.dozermapper.spring.DozerBeanMapperFactoryBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +111,7 @@ public class CloudWebAutoConfiguration {
         @ResponseBody
         BaseResponse<Object> handleControllerException(HttpServletRequest request, Throwable ex) {
             CloudWebProperties.GlobalExceptionHandler handler = this.cloudProperties.getGlobalExceptionHandler();
-            return ExceptionUtils.logAndResponse(request.getRequestURI(), ex, handler.getResponseType(), handler.getDefaultResponse());
+            return GlobalExceptionUtils.logAndResponse(request.getRequestURI(), ex, handler.getResponseType(), handler.getDefaultResponse());
         }
     }
 
