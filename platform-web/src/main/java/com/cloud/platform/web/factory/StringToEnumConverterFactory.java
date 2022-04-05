@@ -33,7 +33,6 @@ public class StringToEnumConverterFactory implements ConverterFactory<String, Co
             }
             if (obj == null) {
                 // 抛出该异常后，会调用 spring 的默认转换方案，即使用 枚举字面量进行映射
-                // org.springframework.core.convert.support.StringToEnumConverterFactory
                 throw new IllegalArgumentException("No element matches " + source);
             }
             return obj;
