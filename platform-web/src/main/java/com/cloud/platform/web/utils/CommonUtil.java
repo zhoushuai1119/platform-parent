@@ -255,4 +255,15 @@ public class CommonUtil {
         }
     }
 
+
+    /**
+     * 输出某字符在字符串中出现的次数
+     * @param str
+     * @param chr
+     * @return
+     */
+    public static Integer countMatches(String str, String chr) {
+        return StringUtils.countMatches(str, chr);
+    }
+
 }
