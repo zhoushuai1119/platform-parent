@@ -1,5 +1,6 @@
 package com.cloud.platform.web.utils;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.cloud.platform.common.exception.BaseException;
 import com.cloud.platform.common.response.BaseResponse;
@@ -104,10 +105,10 @@ public class GlobalExceptionUtils {
                 message = "illegal argument exception";
                 errorTips = ExceptionUtils.getMessage(cex);
                 log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
-            } else if (ex.getCause() instanceof TokenExpiredException) {
-                errorCode = BaseErrorCodeEnum.TOKEN_EXPIRED_ERROR.getCode();
-                TokenExpiredException cex = (TokenExpiredException) ex.getCause();
-                message = "token  expired exception";
+            } else if (ex.getCause() instanceof JWTVerificationException) {
+                errorCode = BaseErrorCodeEnum.TOKEN_VERIFICATION_ERROR.getCode();
+                JWTVerificationException cex = (JWTVerificationException) ex.getCause();
+                message = "token解析异常";
                 errorTips = ExceptionUtils.getMessage(cex);
                 log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
             } else {
