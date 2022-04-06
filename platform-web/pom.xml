@@ -76,6 +76,11 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
+        <!--jwt-token-->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+        </dependency>
         <!-- swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>

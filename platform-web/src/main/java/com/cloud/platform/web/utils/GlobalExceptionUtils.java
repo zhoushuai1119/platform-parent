@@ -1,5 +1,6 @@
 package com.cloud.platform.web.utils;
 
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.cloud.platform.common.exception.BaseException;
 import com.cloud.platform.common.response.BaseResponse;
 import com.cloud.platform.web.enums.BaseErrorCodeEnum;
@@ -95,6 +96,18 @@ public class GlobalExceptionUtils {
                 errorCode = BaseErrorCodeEnum.CONVERSION_FAILED_ERROR.getCode();
                 ConversionFailedException cex = (ConversionFailedException) ex.getCause();
                 message = "类型转换异常";
+                errorTips = ExceptionUtils.getMessage(cex);
+                log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
+            }else if (ex.getCause() instanceof IllegalArgumentException) {
+                errorCode = BaseErrorCodeEnum.ILLEGAL_ARGUMENT_ERROR.getCode();
+                IllegalArgumentException cex = (IllegalArgumentException) ex.getCause();
+                message = "illegal argument exception";
+                errorTips = ExceptionUtils.getMessage(cex);
+                log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
+            } else if (ex.getCause() instanceof TokenExpiredException) {
+                errorCode = BaseErrorCodeEnum.TOKEN_EXPIRED_ERROR.getCode();
+                TokenExpiredException cex = (TokenExpiredException) ex.getCause();
+                message = "token  expired exception";
                 errorTips = ExceptionUtils.getMessage(cex);
                 log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
             } else {
