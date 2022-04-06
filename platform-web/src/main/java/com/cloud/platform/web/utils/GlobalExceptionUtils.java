@@ -93,21 +93,21 @@ public class GlobalExceptionUtils {
                 message = "Json格式错误";
                 errorTips = ExceptionUtils.getMessage(cex);
                 log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
-            } else if (ex.getCause() instanceof ConversionFailedException) {
+            } else if (ex instanceof ConversionFailedException) {
                 errorCode = BaseErrorCodeEnum.CONVERSION_FAILED_ERROR.getCode();
-                ConversionFailedException cex = (ConversionFailedException) ex.getCause();
+                ConversionFailedException cex = (ConversionFailedException) ex;
                 message = "类型转换异常";
                 errorTips = ExceptionUtils.getMessage(cex);
                 log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
-            }else if (ex.getCause() instanceof IllegalArgumentException) {
+            }else if (ex instanceof IllegalArgumentException) {
                 errorCode = BaseErrorCodeEnum.ILLEGAL_ARGUMENT_ERROR.getCode();
-                IllegalArgumentException cex = (IllegalArgumentException) ex.getCause();
+                IllegalArgumentException cex = (IllegalArgumentException) ex;
                 message = "illegal argument exception";
                 errorTips = ExceptionUtils.getMessage(cex);
                 log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
-            } else if (ex.getCause() instanceof JWTVerificationException) {
+            } else if (ex instanceof JWTVerificationException) {
                 errorCode = BaseErrorCodeEnum.TOKEN_VERIFICATION_ERROR.getCode();
-                JWTVerificationException cex = (JWTVerificationException) ex.getCause();
+                JWTVerificationException cex = (JWTVerificationException) ex;
                 message = "token解析异常";
                 errorTips = ExceptionUtils.getMessage(cex);
                 log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
