@@ -56,6 +56,7 @@ public class SwaggerConfiguration {
         if (title == null) {
             title = this.appName;
         }
+
         return new ApiInfoBuilder()
                 .title(title)
                 .description(swaggerProperties.getDescription())
