@@ -21,7 +21,7 @@ public class LogWithUUIDFilter implements Filter {
         this.cloudWebProperties = monsterWebProperties;
     }
 
-    public void init(final FilterConfig filterConfig) throws ServletException {
+    public void init(final FilterConfig filterConfig) {
     }
 
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {

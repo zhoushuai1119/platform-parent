@@ -18,6 +18,7 @@ public class CloudWebProperties {
 
     private boolean enableMethodLogger = true;
     private boolean enableLogWithUUID = false;
+    private boolean enableCors = true;
     private boolean enableJacksonConverter = true;
     private boolean enableDozer = true;
     private CloudWebProperties.GlobalExceptionHandler globalExceptionHandler = new CloudWebProperties.GlobalExceptionHandler();
