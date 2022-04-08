@@ -23,8 +23,6 @@ import org.springframework.context.annotation.Configuration;
  * @date: 2020/12/29 20:42
  * @version: V1.0
  */
-@Configuration
-@AutoConfigureAfter(RedisAutoConfiguration.class)
 @ConditionalOnClass(Config.class)
 @ConditionalOnProperty(
         prefix = "cloud.web.redisson",
@@ -32,7 +30,7 @@ import org.springframework.context.annotation.Configuration;
 )
 @EnableConfigurationProperties(RedissonProperties.class)
 @Slf4j
-public class RedissonConfig {
+public class RedissonConfiguration {
 
     @Value("${spring.application.name:APP}")
     private String clientName;

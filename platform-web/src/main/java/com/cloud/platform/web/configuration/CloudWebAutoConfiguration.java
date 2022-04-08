@@ -36,9 +36,11 @@ import java.util.List;
  * @date: 2022/3/29 17:19
  * @version: v1
  */
-@Configuration
-@EnableConfigurationProperties({ CloudWebProperties.class })
-@Import({ SwaggerConfiguration.class })
+@Configuration(
+     proxyBeanMethods = false
+)
+@EnableConfigurationProperties({CloudWebProperties.class})
+@Import({SwaggerConfiguration.class, RedissonConfiguration.class})
 @Slf4j
 public class CloudWebAutoConfiguration {
 
