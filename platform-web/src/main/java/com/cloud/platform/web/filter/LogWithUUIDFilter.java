@@ -28,14 +28,14 @@ public class LogWithUUIDFilter implements Filter {
         if (this.cloudWebProperties.isEnableLogWithUUID()) {
             try {
                 String uuid = UUID.randomUUID().toString();
-                uuid = uuid.substring(uuid.lastIndexOf("-") + 1);
+                //uuid = uuid.substring(uuid.lastIndexOf("-") + 1);
                 MDC.put("UUID", uuid.toUpperCase());
             }
             catch (Exception ex) {}
         }
         chain.doFilter(request, response);
         try {
-            MDC.put("UUID", null);
+            MDC.remove("UUID");
         }
         catch (Exception ex2) {}
     }
