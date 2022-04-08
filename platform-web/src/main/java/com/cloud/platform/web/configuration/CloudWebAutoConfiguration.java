@@ -100,7 +100,6 @@ public class CloudWebAutoConfiguration {
      * @return
      */
     @Bean
-    @ConditionalOnMissingBean
     @ConditionalOnProperty(
             prefix = "cloud.web",
             name = {"enableCors"},
