@@ -48,6 +48,13 @@ public class PlatformCommonConstant {
     }
 
     /**
+     * logback 日志追踪ID
+     */
+    public interface TrackId {
+        String TRACK_ID = "TRACK_ID";
+    }
+
+    /**
      * 消息头
      */
     public interface Netty {
