@@ -119,10 +119,14 @@ public class CloudWebAutoConfiguration {
 
 
     @Bean
+    @ConditionalOnProperty(
+            prefix = "cloud.web",
+            name = {"enableLogWithUUID"}
+    )
     public FilterRegistrationBean logWithUUIDFilter(CloudWebProperties cloudWebProperties) {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new LogWithUUIDFilter(cloudWebProperties));
-        registration.addUrlPatterns(new String[]{"/*"});
+        registration.addUrlPatterns("/**");
         registration.setName("logWithUUIDFilter");
         registration.setOrder(1);
         return registration;
