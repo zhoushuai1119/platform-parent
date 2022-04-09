@@ -126,7 +126,7 @@ public class CloudWebAutoConfiguration {
     public FilterRegistrationBean logWithUUIDFilter(CloudWebProperties cloudWebProperties) {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new LogWithUUIDFilter(cloudWebProperties));
-        registration.addUrlPatterns("/**");
+        registration.addUrlPatterns("/*");
         registration.setName("logWithUUIDFilter");
         registration.setOrder(1);
         return registration;
