@@ -40,6 +40,7 @@
         <guava.version>23.0</guava.version>
         <groovy.version>3.0.8</groovy.version>
         <feign-httpclient.version>11.8</feign-httpclient.version>
+        <hutool-core.version>5.7.22</hutool-core.version>
         <netty-all.version>4.1.70.Final</netty-all.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-pool2.version>2.11.1</commons-pool2.version>
@@ -153,6 +154,14 @@
                 <artifactId>java-jwt</artifactId>
                 <version>${java-jwt.version}</version>
             </dependency>
+
+            <!--集成工具包-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool-core.version}</version>
+            </dependency>
+
             <!--Feign中使用HttpClient替换JDK自带的HttpURLConnnection网络请求-->
             <dependency>
                 <groupId>io.github.openfeign</groupId>
