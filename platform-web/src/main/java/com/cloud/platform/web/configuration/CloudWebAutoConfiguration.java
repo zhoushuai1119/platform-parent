@@ -107,9 +107,11 @@ public class CloudWebAutoConfiguration {
     )
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("*");
-        corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addAllowedMethod("*");
+        //允许跨域的域名， *表示允许任何域名使用
+        corsConfiguration.addAllowedOrigin(CorsConfiguration.ALL);
+        corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
+        corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
+        //带上cookie信息
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setMaxAge(3600L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
