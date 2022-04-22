@@ -39,6 +39,7 @@
         <redisson.version>3.14.0</redisson.version>
         <guava.version>23.0</guava.version>
         <groovy.version>3.0.8</groovy.version>
+        <feign-httpclient.version>11.8</feign-httpclient.version>
         <netty-all.version>4.1.70.Final</netty-all.version>
         <commons-lang3.version>3.9</commons-lang3.version>
         <commons-pool2.version>2.11.1</commons-pool2.version>
@@ -151,6 +152,12 @@
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
                 <version>${java-jwt.version}</version>
+            </dependency>
+            <!--Feign中使用HttpClient替换JDK自带的HttpURLConnnection网络请求-->
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-httpclient</artifactId>
+                <version>${feign-httpclient.version}</version>
             </dependency>
 
             <!--netty-all-->
