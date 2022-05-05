@@ -18,10 +18,9 @@ public enum BaseErrorCodeEnum implements BaseExceptionCode {
     SYSTEM_ERROR("100000", "system error"),
     PARAM_ERROR("100001", "param error"),
     JSON_PARSER_ERROR("100002", "json parse error"),
-    FEIGN_CLIENT_ERROR("100003", "feign invoke fail"),
-    CONVERSION_FAILED_ERROR("100004", "conversion failed exception"),
-    ILLEGAL_ARGUMENT_ERROR("100005", "illegal argument exception"),
-    TOKEN_VERIFICATION_ERROR("100006", "token  verification exception")
+    CONVERSION_FAILED_ERROR("100003", "conversion failed exception"),
+    ILLEGAL_ARGUMENT_ERROR("100004", "illegal argument exception"),
+    TOKEN_VERIFICATION_ERROR("100005", "token  verification exception")
     ;
 
     private String code;
