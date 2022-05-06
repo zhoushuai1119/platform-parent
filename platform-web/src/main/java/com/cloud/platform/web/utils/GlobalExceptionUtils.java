@@ -1,10 +1,9 @@
 package com.cloud.platform.web.utils;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.cloud.platform.common.exception.BaseException;
 import com.cloud.platform.common.response.BaseResponse;
-import com.cloud.platform.web.enums.BaseErrorCodeEnum;
+import com.cloud.platform.common.enums.BaseErrorCodeEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
