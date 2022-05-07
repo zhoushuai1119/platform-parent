@@ -1,6 +1,6 @@
-package com.cloud.platform.common.request;
+package com.cloud.platform.common.domain.request;
 
-import com.cloud.platform.common.query.BaseQuery;
+import com.cloud.platform.common.domain.query.BaseQuery;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class PageQueryRequest<T> extends BaseQuery<T> {
-    private int pageIndex = 1;
-    private int pageSize = 20;
+    private Integer pageIndex = 1;
+    private Integer pageSize = 20;
     private boolean queryCount = true;
-    private int start;
+    private Integer start;
 }

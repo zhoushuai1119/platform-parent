@@ -1,7 +1,7 @@
-package com.cloud.platform.common.query;
+package com.cloud.platform.common.domain.query;
 
 
-import com.cloud.platform.common.request.BaseRequest;
+import com.cloud.platform.common.domain.request.BaseRequest;
 
 /**
  * @Description:

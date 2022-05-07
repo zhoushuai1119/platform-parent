@@ -1,4 +1,4 @@
-package com.cloud.platform.common.response;
+package com.cloud.platform.common.domain.response;
 
 import com.cloud.platform.common.exception.BaseException;
 import com.cloud.platform.common.exception.BaseExceptionCode;
@@ -34,13 +34,6 @@ public class BaseResponse<T> implements Serializable {
         return this;
     }
 
-    public BaseResponse<T> fail(BaseExceptionCode errorCode, String appendMessage) {
-        this.setSuccess(false);
-        this.setErrorCode(errorCode.getErrorCode());
-        this.setErrorMessage(errorCode.getErrorMessage() + ":" + appendMessage);
-        this.setErrorTips(errorCode.getErrorTips() + ":" + appendMessage);
-        return this;
-    }
 
     public BaseResponse<T> fail(BaseException baseException) {
         this.setSuccess(false);
@@ -56,18 +49,18 @@ public class BaseResponse<T> implements Serializable {
     }
 
     public static <T> BaseResponse<T> createSuccessResult(T model) {
-        BaseResponse<T> rt = new BaseResponse();
-        return rt.success(model);
+        BaseResponse<T> response = new BaseResponse();
+        return response.success(model);
     }
 
     public static <T> BaseResponse<T> createFailResult(BaseExceptionCode errorCode) {
-        BaseResponse<T> rt = new BaseResponse();
-        return rt.fail(errorCode);
+        BaseResponse<T> response = new BaseResponse();
+        return response.fail(errorCode);
     }
 
-    public static <T> BaseResponse<T> createFailResult(BaseExceptionCode errorCode, String appendMessage) {
-        BaseResponse<T> rt = new BaseResponse();
-        return rt.fail(errorCode, appendMessage);
+    public static <T> BaseResponse<T> createFailResult(BaseException baseException) {
+        BaseResponse<T> response = new BaseResponse();
+        return response.fail(baseException);
     }
 
 }

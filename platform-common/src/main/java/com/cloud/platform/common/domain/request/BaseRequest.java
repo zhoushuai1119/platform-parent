@@ -1,4 +1,4 @@
-package com.cloud.platform.common.request;
+package com.cloud.platform.common.domain.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

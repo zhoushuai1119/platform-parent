@@ -55,7 +55,7 @@ public class PlatformCommonConstant {
     }
 
     /**
-     * 消息头
+     * netty消息头
      */
     public interface Netty {
         int HEAD_DATA = 0X76;

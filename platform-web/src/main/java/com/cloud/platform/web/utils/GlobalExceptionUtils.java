@@ -2,7 +2,7 @@ package com.cloud.platform.web.utils;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.cloud.platform.common.exception.BaseException;
-import com.cloud.platform.common.response.BaseResponse;
+import com.cloud.platform.common.domain.response.BaseResponse;
 import com.cloud.platform.common.enums.BaseErrorCodeEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;

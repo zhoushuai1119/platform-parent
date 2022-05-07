@@ -1,6 +1,8 @@
 package com.cloud.platform.web.utils;
 
 import com.cloud.platform.common.constants.PlatformCommonConstant;
+import com.cloud.platform.common.exception.BaseException;
+import com.cloud.platform.common.exception.BaseExceptionCode;
 import com.cloud.platform.common.utils.JsonUtil;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
@@ -243,6 +245,16 @@ public class CommonUtil {
     }
 
     /**
+     * 输出某字符在字符串中出现的次数
+     * @param str
+     * @param chr
+     * @return
+     */
+    public static Integer countMatches(String str, String chr) {
+        return StringUtils.countMatches(str, chr);
+    }
+
+    /**
      * 功能描述: 当表达式为true时执行，否则不执行
      *
      * @param arg      参数
@@ -253,17 +265,6 @@ public class CommonUtil {
         if (expression) {
             consumer.accept(arg);
         }
-    }
-
-
-    /**
-     * 输出某字符在字符串中出现的次数
-     * @param str
-     * @param chr
-     * @return
-     */
-    public static Integer countMatches(String str, String chr) {
-        return StringUtils.countMatches(str, chr);
     }
 
 }
