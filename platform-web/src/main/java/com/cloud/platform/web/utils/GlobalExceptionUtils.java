@@ -36,13 +36,14 @@ public class GlobalExceptionUtils {
     public static BaseResponse<Object> logAndResponse(String methodName, Throwable ex, String responseType, String defaultMessage) {
         BaseResponse<Object> baseResponse = new BaseResponse();
         String errorCode = null;
-        String message = null;
+        String errorMessage = null;
         String errorTips = null;
         if (ex instanceof BaseException) {
             BaseException bex = (BaseException) ex;
             errorCode = bex.getErrorCode();
-            message = StringUtils.isEmpty(bex.getErrorTips()) ? bex.getMessage() : bex.getErrorTips();
-            log.error("{} method error , code: {}, message: {}", new Object[]{methodName, errorCode, message});
+            errorMessage = StringUtils.isEmpty(bex.getMessage()) ? bex.getErrorTips() : bex.getMessage();
+            errorTips = bex.getErrorTips();
+            log.error("{} method error , code: {}, message: {}", new Object[]{methodName, errorCode, errorMessage});
         } else {
             StringBuilder stringBuilder;
             BindingResult result;
@@ -56,9 +57,9 @@ public class GlobalExceptionUtils {
                         stringBuilder.append(key.getField()).append(" ").append(key.getDefaultMessage()).append(", 当前值: '").append(key.getRejectedValue()).append("'; ");
                     });
                 }
-                message = "参数校验异常";
-                errorTips = stringBuilder.toString();
-                log.error("{} method error , {}", methodName, message);
+                errorMessage = stringBuilder.toString();
+                errorTips = BaseErrorCodeEnum.PARAM_ERROR.getMessage();
+                log.error("{} method error , {}", methodName, errorMessage);
             } else if (ex instanceof MethodArgumentNotValidException) {
                 errorCode = BaseErrorCodeEnum.PARAM_ERROR.getCode();
                 result = ((MethodArgumentNotValidException) ex).getBindingResult();
@@ -69,9 +70,9 @@ public class GlobalExceptionUtils {
                         stringBuilder.append(key.getField()).append(" ").append(key.getDefaultMessage()).append(", 当前值: '").append(key.getRejectedValue()).append("'; ");
                     });
                 }
-                message = "参数校验异常";
-                errorTips = stringBuilder.toString();
-                log.error("{} method error , {}", methodName, message);
+                errorMessage = stringBuilder.toString();
+                errorTips = BaseErrorCodeEnum.PARAM_ERROR.getMessage();
+                log.error("{} method error , {}", methodName, errorMessage);
             } else if (ex instanceof ConstraintViolationException) {
                 errorCode = BaseErrorCodeEnum.PARAM_ERROR.getCode();
                 ConstraintViolationException cex = (ConstraintViolationException) ex;
@@ -83,43 +84,45 @@ public class GlobalExceptionUtils {
                         stringBuilder.append(key.getPropertyPath()).append(" ").append(key.getMessage()).append(", 当前值: '").append(invald.length() < 50 ? invald : invald.substring(0, 47) + "...").append("'; ");
                     });
                 }
-                message = "参数校验异常";
-                errorTips = stringBuilder.toString();
-                log.error("{} method error , {}", methodName, message);
+                errorMessage = stringBuilder.toString();
+                errorTips = BaseErrorCodeEnum.PARAM_ERROR.getMessage();
+                log.error("{} method error , {}", methodName, errorMessage);
+
             } else if (ex.getCause() instanceof JsonProcessingException) {
                 errorCode = BaseErrorCodeEnum.JSON_PARSER_ERROR.getCode();
                 JsonProcessingException cex = (JsonProcessingException) ex.getCause();
-                message = "Json格式错误";
-                errorTips = ExceptionUtils.getMessage(cex);
-                log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
+                errorMessage = ExceptionUtils.getMessage(cex);
+                errorTips = BaseErrorCodeEnum.JSON_PARSER_ERROR.getMessage();
+                log.error("{} method error , {}", methodName, errorMessage);
+
             } else if (ex instanceof ConversionFailedException) {
                 errorCode = BaseErrorCodeEnum.CONVERSION_FAILED_ERROR.getCode();
                 ConversionFailedException cex = (ConversionFailedException) ex;
-                message = "类型转换异常";
-                errorTips = ExceptionUtils.getMessage(cex);
-                log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
+                errorMessage = ExceptionUtils.getMessage(cex);
+                errorTips = BaseErrorCodeEnum.CONVERSION_FAILED_ERROR.getMessage();
+                log.error("{} method error , {}", methodName, errorMessage);
+
             }else if (ex instanceof IllegalArgumentException) {
                 errorCode = BaseErrorCodeEnum.ILLEGAL_ARGUMENT_ERROR.getCode();
                 IllegalArgumentException cex = (IllegalArgumentException) ex;
-                message = "illegal argument exception";
-                errorTips = ExceptionUtils.getMessage(cex);
-                log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
+                errorMessage = ExceptionUtils.getMessage(cex);
+                errorTips = BaseErrorCodeEnum.ILLEGAL_ARGUMENT_ERROR.getMessage();
+                log.error("{} method error , {}", methodName, errorMessage);
             } else if (ex instanceof JWTVerificationException) {
                 errorCode = BaseErrorCodeEnum.TOKEN_VERIFICATION_ERROR.getCode();
                 JWTVerificationException cex = (JWTVerificationException) ex;
-                message = "token解析异常";
-                errorTips = ExceptionUtils.getMessage(cex);
-                log.error("{} method error , {}", methodName, ExceptionUtils.getMessage(cex));
+                errorMessage = ExceptionUtils.getMessage(cex);
+                errorTips = BaseErrorCodeEnum.ILLEGAL_ARGUMENT_ERROR.getMessage();
+                log.error("{} method error , {}", methodName, errorMessage);
             } else {
                 errorCode = BaseErrorCodeEnum.SYSTEM_ERROR.getCode();
-                message = BaseErrorCodeEnum.SYSTEM_ERROR.getMessage();
+                errorMessage = BaseErrorCodeEnum.SYSTEM_ERROR.getMessage();
                 log.error(methodName + " method error , ", ex);
             }
         }
 
-        baseResponse.setErrorTips(MDC.get("UUID"));
         baseResponse.setErrorCode(errorCode);
-        baseResponse.setErrorMessage(message);
+        baseResponse.setErrorMessage(errorMessage);
         baseResponse.setErrorTips(errorTips);
         baseResponse.setSuccess(false);
         return baseResponse;

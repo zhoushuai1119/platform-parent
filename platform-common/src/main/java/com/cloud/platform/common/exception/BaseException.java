@@ -17,25 +17,27 @@ public class BaseException extends RuntimeException {
 
     private static final long serialVersionUID = -3962157388406613297L;
 
+    /**
+     * 错误码
+     */
     private String errorCode;
+    /**
+     * 错误提示
+     */
     private String errorTips;
-    private BaseExceptionCode baseErrorCode;
 
-    public BaseException(String errorCode, String message, String errorTips) {
-        super(message);
+
+    public BaseException(String errorCode, String errorMessage, String errorTips) {
+        super(errorMessage);
         this.errorCode = errorCode;
         this.errorTips = errorTips;
     }
 
-    public BaseException(BaseExceptionCode baseErrorCode, String message) {
-        super(message);
-        this.baseErrorCode = baseErrorCode;
-    }
 
-    public BaseException(BaseExceptionCode baseErrorCode, String message, String errorTips) {
-        super(message);
-        this.baseErrorCode = baseErrorCode;
-        this.errorTips = errorTips;
+    public BaseException(BaseExceptionCode baseErrorCode, String errorMessage) {
+        super(errorMessage);
+        this.errorCode = baseErrorCode.getErrorCode();
+        this.errorTips = baseErrorCode.getErrorMessage();
     }
 
 }

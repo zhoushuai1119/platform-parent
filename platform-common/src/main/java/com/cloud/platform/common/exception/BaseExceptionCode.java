@@ -7,10 +7,16 @@ package com.cloud.platform.common.exception;
  */
 public interface BaseExceptionCode {
 
+    /**
+     * 错误码
+     * @return
+     */
     String getErrorCode();
 
+    /**
+     * 错误信息
+     * @return
+     */
     String getErrorMessage();
-
-    String getErrorTips();
 
 }

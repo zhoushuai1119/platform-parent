@@ -30,7 +30,6 @@ public class BaseResponse<T> implements Serializable {
         this.setSuccess(false);
         this.setErrorCode(errorCode.getErrorCode());
         this.setErrorMessage(errorCode.getErrorMessage());
-        this.setErrorTips(errorCode.getErrorTips());
         return this;
     }
 
@@ -39,6 +38,7 @@ public class BaseResponse<T> implements Serializable {
         this.setSuccess(false);
         this.setErrorCode(baseException.getErrorCode());
         this.setErrorMessage(baseException.getMessage());
+        this.setErrorTips(baseException.getErrorTips());
         return this;
     }
 

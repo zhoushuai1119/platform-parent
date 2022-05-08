@@ -1,6 +1,5 @@
 package com.cloud.platform.common.enums;
 
-import com.cloud.platform.common.exception.BaseExceptionCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,7 +11,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum BaseErrorCodeEnum implements BaseExceptionCode {
+public enum BaseErrorCodeEnum {
 
     SUCCESS("000000", "success"),
     SYSTEM_ERROR("100000", "system error"),
@@ -24,21 +23,7 @@ public enum BaseErrorCodeEnum implements BaseExceptionCode {
     REQUEST_FAIL_BLOCKED_BY_SENTINEL("100006", "request fail blocked by sentinel");
 
     private String code;
+
     private String message;
-
-    @Override
-    public String getErrorCode() {
-        return code;
-    }
-
-    @Override
-    public String getErrorMessage() {
-        return message;
-    }
-
-    @Override
-    public String getErrorTips() {
-        return message;
-    }
 
 }
