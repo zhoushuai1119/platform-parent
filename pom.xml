@@ -54,7 +54,6 @@
         <validation.api.version>2.0.0.Final</validation.api.version>
         <docker-maven-plugin.version>1.2.2</docker-maven-plugin.version>
         <cloud.apollo.version>1.9.2</cloud.apollo.version>
-        <mybatis-generator-maven-plugin.version>1.4.0</mybatis-generator-maven-plugin.version>
         <platform.common.version>1.4.2-RELEASES</platform.common.version>
         <platform.web.version>1.4.2-RELEASES</platform.web.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
@@ -312,24 +311,6 @@
     <build>
         <finalName>platform-parent</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>${mybatis-generator-maven-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <configurationFile>src/main/resources/generator/generatorConfig.xml</configurationFile>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-            </plugin>
-
             <!-- Docker maven plugin -->
             <plugin>
                 <groupId>com.spotify</groupId>
