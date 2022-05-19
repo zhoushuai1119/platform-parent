@@ -11,8 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.objenesis.instantiator.util.ClassUtils;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -261,14 +259,10 @@ public class CommonUtil {
      * @param data
      * @return
      */
-    public static String urlencode(Map<String, ?> data) {
+    public static String urlencode(Map<String, String> data) {
         StringBuilder sb = new StringBuilder();
         data.forEach((k, v) -> {
-            try {
-                sb.append(k).append("=").append(URLEncoder.encode(v + "", "UTF-8")).append("&");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            sb.append(k).append("=").append(v).append("&");
         });
         String result = sb.toString();
         result = result.substring(0, result.lastIndexOf("&"));
