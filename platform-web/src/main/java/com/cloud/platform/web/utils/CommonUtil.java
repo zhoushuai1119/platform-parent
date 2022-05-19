@@ -1,8 +1,6 @@
 package com.cloud.platform.web.utils;
 
 import com.cloud.platform.common.constants.PlatformCommonConstant;
-import com.cloud.platform.common.exception.BaseException;
-import com.cloud.platform.common.exception.BaseExceptionCode;
 import com.cloud.platform.common.utils.JsonUtil;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
@@ -13,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.cglib.beans.BeanMap;
 import org.springframework.objenesis.instantiator.util.ClassUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -246,12 +246,33 @@ public class CommonUtil {
 
     /**
      * 输出某字符在字符串中出现的次数
+     *
      * @param str
      * @param chr
      * @return
      */
     public static Integer countMatches(String str, String chr) {
         return StringUtils.countMatches(str, chr);
+    }
+
+    /**
+     * 将map型转为请求参数型
+     *
+     * @param data
+     * @return
+     */
+    public static String urlencode(Map<String, ?> data) {
+        StringBuilder sb = new StringBuilder();
+        data.forEach((k, v) -> {
+            try {
+                sb.append(k).append("=").append(URLEncoder.encode(v + "", "UTF-8")).append("&");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        });
+        String result = sb.toString();
+        result = result.substring(0, result.lastIndexOf("&"));
+        return result;
     }
 
     /**
