@@ -259,7 +259,7 @@ public class CommonUtil {
      * @param data
      * @return
      */
-    public static String urlencode(Map<String, String> data) {
+    public static String urlEncode(Map<String, String> data) {
         StringBuilder sb = new StringBuilder();
         data.forEach((k, v) -> {
             sb.append(k).append("=").append(v).append("&");
