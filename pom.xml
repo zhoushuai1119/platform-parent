@@ -39,7 +39,7 @@
         <redisson.version>3.14.0</redisson.version>
         <guava.version>23.0</guava.version>
         <groovy.version>3.0.8</groovy.version>
-        <feign-httpclient.version>11.8</feign-httpclient.version>
+        <feign-httpclient.version>10.10.1</feign-httpclient.version>
         <hutool-all.version>5.7.22</hutool-all.version>
         <netty-all.version>4.1.70.Final</netty-all.version>
         <commons-lang3.version>3.9</commons-lang3.version>
