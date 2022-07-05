@@ -32,7 +32,7 @@
         <fastjson.version>1.2.83</fastjson.version>
         <camunda.version>7.15.0</camunda.version>
         <lombok.version>1.18.20</lombok.version>
-        <sharding-jdbc.version>4.1.1</sharding-jdbc.version>
+        <sharding-jdbc.version>4.1.0</sharding-jdbc.version>
         <rocketmq-version>4.9.1</rocketmq-version>
         <seata-version>1.4.2</seata-version>
         <alibaba-druid.version>1.1.23</alibaba-druid.version>
