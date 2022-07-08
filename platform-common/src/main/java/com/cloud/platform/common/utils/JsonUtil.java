@@ -13,16 +13,11 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.SignStyle;
-import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Map;
 
@@ -33,10 +28,10 @@ import java.util.Map;
  */
 @Slf4j
 public class JsonUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtil.class);
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private static final DateTimeFormatter MY_DATE_TIME;
-    private static final DateTimeFormatter MY_DATE;
+    private static final SimpleDateFormat DATE_FORMAT_TIME = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter MY_DATE_TIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter MY_DATE = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private JsonUtil() {
     }
@@ -50,7 +45,7 @@ public class JsonUtil {
             try {
                 return OBJECT_MAPPER.writeValueAsString(object);
             } catch (JsonProcessingException var2) {
-                LOGGER.error("writeJsonValue error, ", var2);
+                log.error("writeJsonValue error, ", var2);
                 return null;
             }
         }
@@ -63,7 +58,7 @@ public class JsonUtil {
             try {
                 return OBJECT_MAPPER.readValue(json, t);
             } catch (Exception var3) {
-                LOGGER.error("readJsonValue error, ", var3);
+                log.error("readJsonValue error, ", var3);
                 return null;
             }
         }
@@ -76,7 +71,7 @@ public class JsonUtil {
             try {
                 return OBJECT_MAPPER.readValue(json, t);
             } catch (Exception var3) {
-                LOGGER.error("readJsonValue error, ", var3);
+                log.error("readJsonValue error, ", var3);
                 return null;
             }
         }
@@ -105,19 +100,6 @@ public class JsonUtil {
     }
 
     static {
-        MY_DATE_TIME = (new DateTimeFormatterBuilder())
-                .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-')
-                .appendValue(ChronoField.MONTH_OF_YEAR, 2).appendLiteral('-')
-                .appendValue(ChronoField.DAY_OF_MONTH, 2).appendLiteral(' ')
-                .appendValue(ChronoField.HOUR_OF_DAY, 2).appendLiteral(':')
-                .appendValue(ChronoField.MINUTE_OF_HOUR, 2).optionalStart().appendLiteral(':')
-                .appendValue(ChronoField.SECOND_OF_MINUTE, 2)
-                .toFormatter();
-        MY_DATE = (new DateTimeFormatterBuilder())
-                .appendValue(ChronoField.YEAR, 4, 10, SignStyle.EXCEEDS_PAD).appendLiteral('-')
-                .appendValue(ChronoField.MONTH_OF_YEAR, 2)
-                .appendLiteral('-').appendValue(ChronoField.DAY_OF_MONTH, 2)
-                .toFormatter();
         //反序列化的时候如果多了其他属性,不抛出异常
         OBJECT_MAPPER.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         JavaTimeModule javaTimeModule = new JavaTimeModule();
@@ -139,7 +121,7 @@ public class JsonUtil {
         //空值不序列化
         OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         //设置Date日期格式,不影响LocalDateTime和LocalDate
-        OBJECT_MAPPER.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        OBJECT_MAPPER.setDateFormat(DATE_FORMAT_TIME);
     }
 
 }
