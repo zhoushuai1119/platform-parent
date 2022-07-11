@@ -10,10 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
-import springfox.documentation.service.SecurityScheme;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -51,7 +50,7 @@ public class SwaggerConfiguration {
         } else {
             select.apis(RequestHandlerSelectors.any());
         }
-        select.build().securitySchemes(securitySchemes());
+        select.build().securitySchemes(securitySchemes()).securityContexts(this.securityContexts());
         return docket;
     }
 
@@ -77,6 +76,16 @@ public class SwaggerConfiguration {
     private List<SecurityScheme> securitySchemes() {
         ApiKey apiKey = new ApiKey("Authorization", "login-token", "header");
         return Collections.singletonList(apiKey);
+    }
+
+    private List<SecurityContext> securityContexts() {
+        return Collections.singletonList(SecurityContext.builder().securityReferences(this.defaultAuth()).build());
+    }
+
+    List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[]{authorizationScope};
+        return Collections.singletonList(new SecurityReference("Authorization", authorizationScopes));
     }
 
 }
