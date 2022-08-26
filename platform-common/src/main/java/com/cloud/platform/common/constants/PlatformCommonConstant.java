@@ -45,6 +45,10 @@ public class PlatformCommonConstant {
          * 空格
          */
         String SPACE_SYMBOL = " ";
+        /**
+         * 或
+         */
+        String OR_SYMBOL = "||";
     }
 
     /**
