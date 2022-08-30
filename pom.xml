@@ -412,7 +412,7 @@
                 </repository>
             </distributionManagement>
         </profile>
-        <!-- 私人仓库发布地址配置  -->
+        <!-- 私人仓库发布地址配置 -->
         <profile>
             <id>personal-deploy</id>
             <distributionManagement>
