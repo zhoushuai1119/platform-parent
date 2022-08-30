@@ -345,7 +345,7 @@
     <profiles>
         <!-- maven中央仓库发布地址配置 -->
         <profile>
-            <id>ossrh-maven-deploy</id>
+            <id>ossrh-deploy</id>
             <build>
                 <plugins>
                     <!-- 生成源码插件 -->
@@ -414,7 +414,7 @@
         </profile>
         <!-- 私人仓库发布地址配置 -->
         <profile>
-            <id>person-maven-deploy</id>
+            <id>personal-deploy</id>
             <distributionManagement>
                 <repository>
                     <id>releases</id>
