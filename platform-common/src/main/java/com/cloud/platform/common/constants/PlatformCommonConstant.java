@@ -49,6 +49,10 @@ public class PlatformCommonConstant {
          * 或
          */
         String OR_SYMBOL = "||";
+        /**
+         * 所有
+         */
+        String ALL_SYMBOL = "*";
     }
 
     /**
