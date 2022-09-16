@@ -66,6 +66,7 @@
         <dozer-core.version>6.5.2</dozer-core.version>
         <commons-collections.version>3.2.2</commons-collections.version>
         <minio.version>8.4.3</minio.version>
+        <squareup.okhttp3.version>4.8.1</squareup.okhttp3.version>
         <jackson.version>2.12.6</jackson.version>
         <java-jwt.version>3.19.0</java-jwt.version>
         <screw-core.version>1.0.5</screw-core.version>
@@ -209,6 +210,13 @@
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
+            </dependency>
+            <!--引入minio需引入下面依赖-->
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${squareup.okhttp3.version}</version>
+                <scope>compile</scope>
             </dependency>
 
             <!-- easyexcel -->
