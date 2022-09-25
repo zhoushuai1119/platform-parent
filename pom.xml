@@ -73,6 +73,7 @@
         <validation.api.version>2.0.0.Final</validation.api.version>
         <cloud.apollo.version>1.9.2</cloud.apollo.version>
         <arthas-spring-boot.version>3.6.5</arthas-spring-boot.version>
+        <skywalking.version>8.6.0</skywalking.version>
 
         <!-- docker配置 -->
         <docker.host.url>http://139.196.208.53:2375</docker.host.url>
@@ -316,6 +317,19 @@
                 <version>${swagger-version}</version>
             </dependency>
             <!--swagger end -->
+
+            <!-- skywalking start -->
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-logback-1.x</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-trace</artifactId>
+                <version>${skywalking.version}</version>
+            </dependency>
+            <!-- skywalking end -->
 
             <!--camunda 工作流引擎-->
             <dependency>
