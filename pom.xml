@@ -73,7 +73,7 @@
         <validation.api.version>2.0.0.Final</validation.api.version>
         <cloud.apollo.version>1.9.2</cloud.apollo.version>
         <arthas-spring-boot.version>3.6.5</arthas-spring-boot.version>
-        <skywalking.version>8.6.0</skywalking.version>
+        <skywalking.version>8.12.0</skywalking.version>
 
         <!-- docker配置 -->
         <docker.host.url>http://139.196.208.53:2375</docker.host.url>
