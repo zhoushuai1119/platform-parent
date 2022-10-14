@@ -20,7 +20,8 @@ public enum BaseErrorCodeEnum {
     CONVERSION_FAILED_ERROR("100003", "conversion failed exception"),
     ILLEGAL_ARGUMENT_ERROR("100004", "illegal argument exception"),
     TOKEN_VERIFICATION_ERROR("100005", "token  verification exception"),
-    REQUEST_FAIL_BLOCKED_BY_SENTINEL("100006", "request fail blocked by sentinel");
+    REQUEST_FAIL_BLOCKED_BY_SENTINEL("100006", "request fail blocked by sentinel"),
+    REQUEST_FAIL_FALLBACK("100007", "request fail fallback");
 
     private String code;
 
