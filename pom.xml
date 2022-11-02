@@ -72,7 +72,7 @@
         <screw-core.version>1.0.5</screw-core.version>
         <validation.api.version>2.0.1.Final</validation.api.version>
         <hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
-        <cloud.apollo.version>1.9.2</cloud.apollo.version>
+        <cloud.apollo.version>2.0.1</cloud.apollo.version>
         <sentinel-datasource-apollo.version>1.8.1</sentinel-datasource-apollo.version>
         <arthas-spring-boot.version>3.6.6</arthas-spring-boot.version>
         <skywalking.version>8.12.0</skywalking.version>
