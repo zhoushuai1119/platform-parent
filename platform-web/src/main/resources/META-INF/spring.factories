@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.cloud.platform.web.configuration.CloudWebAutoConfiguration,\
-com.cloud.platform.web.configuration.MicrometerAutoConfiguration
+com.cloud.platform.web.configuration.CloudWebAutoConfiguration

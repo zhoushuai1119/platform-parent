@@ -43,7 +43,7 @@ import java.util.List;
      proxyBeanMethods = false
 )
 @EnableConfigurationProperties({CloudWebProperties.class})
-@Import({SwaggerConfiguration.class, RedissonConfiguration.class})
+@Import(SwaggerConfiguration.class)
 @Slf4j
 public class CloudWebAutoConfiguration {
 
