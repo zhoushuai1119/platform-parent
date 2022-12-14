@@ -1,19 +1,20 @@
-package com.cloud.platform.web.netty.decode;
+package com.cloud.platform.web.netty.codec;
 
 import com.cloud.platform.common.constants.PlatformCommonConstant;
-import com.cloud.platform.web.netty.protocol.SmartProtocol;
+import com.cloud.platform.web.netty.protocol.MessageProtocol;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
+import io.netty.handler.codec.ByteToMessageCodec;
 
 import java.util.List;
 
 /**
- * @Description:
- * @Author: ZhouShuai
- * @Date: 2021-07-14 21:04
+ * @description:
+ * @author: zhou shuai
+ * @date: 2022/12/14 9:45
+ * @version: v1
  */
-public class SmartDecoder extends ByteToMessageDecoder {
+public class MessageCodec extends ByteToMessageCodec<MessageProtocol> {
 
     /**
      * <pre>
@@ -23,14 +24,29 @@ public class SmartDecoder extends ByteToMessageDecoder {
      */
     public final int BASE_LENGTH = 4 + 4;
 
+    /**
+     * 客户端传来的最大数据长度
+     */
+    public final int MAX_LENGTH = 2048;
+
     @Override
-    protected void decode(ChannelHandlerContext ctx, ByteBuf buffer, List<Object> out) {
+    protected void encode(ChannelHandlerContext channelHandlerContext, MessageProtocol msg, ByteBuf byteBuf) throws Exception {
+        // 1.写入消息头的信息标志(int类型)
+        byteBuf.writeInt(msg.getHeadData());
+        // 2.写入消息的长度(int 类型)
+        byteBuf.writeInt(msg.getContentLength());
+        // 3.写入消息的内容(byte[]类型)
+        byteBuf.writeBytes(msg.getContent());
+    }
+
+    @Override
+    protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf buffer, List<Object> out) throws Exception {
         // 可读长度必须大于基本长度
         if (buffer.readableBytes() >= BASE_LENGTH) {
             // 防止socket字节流攻击
             // 防止，客户端传来的数据过大
             // 因为，太大的数据，是不合理的
-            if (buffer.readableBytes() > 2048) {
+            if (buffer.readableBytes() > MAX_LENGTH) {
                 buffer.skipBytes(buffer.readableBytes());
             }
 
@@ -73,8 +89,9 @@ public class SmartDecoder extends ByteToMessageDecoder {
             byte[] data = new byte[length];
             buffer.readBytes(data);
 
-            SmartProtocol protocol = new SmartProtocol(data.length, data);
+            MessageProtocol protocol = new MessageProtocol(data.length, data);
             out.add(protocol);
         }
     }
+
 }

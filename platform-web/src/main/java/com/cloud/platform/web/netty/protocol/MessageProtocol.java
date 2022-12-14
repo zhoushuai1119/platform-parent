@@ -20,12 +20,12 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class SmartProtocol {
+public class MessageProtocol {
 
     /**
      * 消息的开头的信息标志
      */
-    private int head_data = PlatformCommonConstant.Netty.HEAD_DATA;
+    private int headData = PlatformCommonConstant.Netty.HEAD_DATA;
     /**
      * 消息的长度
      */
@@ -43,7 +43,7 @@ public class SmartProtocol {
      * @param content
      *            协议里面，消息的数据
      */
-    public SmartProtocol(int contentLength, byte[] content) {
+    public MessageProtocol(int contentLength, byte[] content) {
         this.contentLength = contentLength;
         this.content = content;
     }
@@ -51,7 +51,7 @@ public class SmartProtocol {
 
     @Override
     public String toString() {
-        return "SmartCarProtocol [head_data=" + head_data + ", contentLength="
+        return "SmartCarProtocol [head_data=" + headData + ", contentLength="
                 + contentLength + ", content=" + new String(content) + "]";
     }
 
