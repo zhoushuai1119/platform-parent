@@ -51,7 +51,7 @@
         <lombok.version>1.18.20</lombok.version>
         <sharding-jdbc.version>4.1.0</sharding-jdbc.version>
         <rocketmq-version>4.9.4</rocketmq-version>
-        <seata-version>1.5.2</seata-version>
+        <seata-version>1.6.1</seata-version>
         <alibaba-druid.version>1.1.23</alibaba-druid.version>
         <redisson.version>3.14.0</redisson.version>
         <guava.version>23.0</guava.version>
